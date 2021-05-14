@@ -14,7 +14,7 @@ I assume that your token expires every 30 mins in django
 
 I assume that your auth uses default `jwt` 
 
-I assume that you are using default `django-graphql-auth` with no modification
+I assume that you are using default `django-graphql-auth` with no modification on the mutations it has
 
  that us because the login expect
 
