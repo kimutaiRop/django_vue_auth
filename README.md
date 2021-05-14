@@ -1,6 +1,6 @@
 # django graphene auth with vue js
 
-this application has support for vue 2as of now
+this application has support for vue2 as of now
 
 it has only the auth set up however the graphql apollo client is set for all applications 
 
@@ -37,3 +37,16 @@ I assume that you are using django `sites` with site set to current domain of th
 I assume your web socket is running at `/ws/graphql` if you are using subscriptions
 
 
+## description
+
+this application is complete and can run as it is provided you have a django graphene server running
+
+you can modify `/src/settings.js` config for domain or local server
+
+the app can
+    1. login
+    2. register
+    3. activate account
+    4. logout
+
+other auth related features comming
