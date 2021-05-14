@@ -13,7 +13,6 @@ Vue.use(VueApollo);
 
 const authMiddleware = new ApolloLink((operation, forward) => {
     const token = localStorage.getItem("token")
-    console.log(token)
     operation.setContext({
         headers: {
             authorization: token ? `jwt ${token}` : null

@@ -15,8 +15,6 @@ export default {
 
   methods: {
     loginHandler(data) {
-      console.log(data);
-      console.log(this.AuthHandleLogin);
       this.$store.commit("login", data);
     },
   },
