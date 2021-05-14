@@ -49,6 +49,7 @@ the app can
     1. login
     2. register
     3. activate account
-    4. logout
+    4. refresh token
+    5. logout
 
 other auth related features comming
