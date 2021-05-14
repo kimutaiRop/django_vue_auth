@@ -6,7 +6,7 @@ it has only the auth set up however the graphql apollo client is set for all app
 
 it also uses vuex and routing all set and ready for use
 
-this is not a library and so if you want to use it you can either modify your current application by adding the features here or you can download this as your project template and just rename the application to suit your target application and start using it
+this is not a library and so if you want to use it you can either modify your current application by adding the features here or you can download this as your project template and just rename the application to suit your target application and start using it (the later is better way to use all the features I made)
 
 ## assumption
 
