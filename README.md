@@ -1,24 +1,39 @@
-# auth
+# django graphene auth with vue js
 
-## Project setup
-```
-npm install
-```
+this application has support for vue 2as of now
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+it has only the auth set up however the graphql apollo client is set for all applications 
 
-### Compiles and minifies for production
-```
-npm run build
-```
+it also uses vuex and routing all set and ready for use
 
-### Lints and fixes files
-```
-npm run lint
-```
+this is not a library and so if you want to use it you can either modify your current application by adding the features here or you can download this as your project template and just rename the application to suit your target application and start using it
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## assumption
+
+I assume that your token expires every 30 mins in django
+
+I assume that your auth uses default `jwt` 
+
+I assume that you are using default `django-graphene-auth` with no modification
+
+ that us because the login expect
+
+ ```
+    username/email  # i am using email in my case
+    password
+ ```
+
+ and register expect
+
+  ```
+    username
+    email  
+    password1
+    password2
+ ```
+
+I assume that you are using django `sites` with site set to current domain of the frontend
+
+I assume your web socket is running at `/ws/graphql` if you are using subscriptions
+
+
