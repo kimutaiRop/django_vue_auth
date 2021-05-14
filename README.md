@@ -16,7 +16,7 @@ I assume that your auth uses default `jwt`
 
 I assume that you are using default `django-graphql-auth` with no modification on the mutations it has
 
- that us because the login expect
+ the login expect
 
  ```
     username/email  # i am using email in my case
@@ -31,6 +31,8 @@ I assume that you are using default `django-graphql-auth` with no modification o
     password1
     password2
  ```
+
+you can check out mutations in '/store/index.js`
 
 I assume that you are using django `sites` with site set to current domain of the frontend
 
