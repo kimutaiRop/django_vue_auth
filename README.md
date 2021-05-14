@@ -44,6 +44,8 @@ this application is complete and can run as it is provided you have a django gra
 you can modify `/src/settings.js` config for domain or local server
 
 the app can
+
+
     1. login
     2. register
     3. activate account
