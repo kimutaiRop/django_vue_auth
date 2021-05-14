@@ -53,3 +53,5 @@ the app can
     5. logout
 
 other auth related features comming
+
+to test I have a server I made tutorial on https://github.com/kimutaiRop/todo-back you can download and checkout how it works
