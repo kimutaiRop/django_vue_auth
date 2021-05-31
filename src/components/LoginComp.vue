@@ -1,6 +1,6 @@
 <template>
   <div class="row align-items-center justify-content-center">
-    <div class="col-md-8 col-lg-6 col-xl-5">
+    <div class="col-md-4">
       <div class="card">
         <div class="card-body p-4">
           <div class="text-center mt-2">
@@ -74,6 +74,14 @@
                   >
                     forgot password</router-link
                   >
+                  or
+                  <router-link
+                    :to="{ name: 'ResendActivationEmail' }"
+                    class="fw-medium text-primary"
+                  >
+                    resend
+                  </router-link>
+                  verification instructions
                 </p>
               </div>
             </form>

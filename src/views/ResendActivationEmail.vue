@@ -4,7 +4,7 @@
     :success="success"
     @handle-submit="requestToken"
     heading="Resend Activation Email"
-    sub_heading="activate your email by giving email "
+    sub_heading="activate your account by giving email "
     success_message="Your activation email has been sent"
   />
 </template>
