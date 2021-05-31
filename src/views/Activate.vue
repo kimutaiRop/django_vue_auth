@@ -50,7 +50,6 @@ export default {
         try {
           let errors = data.verifyAccount.errors;
           this.success = data.verifyAccount.success;
-          alert(data.verifyAccount.success);
           if (errors) {
             this.errors = true;
             this.nonField = errors.nonFieldErrors ? errors.nonFieldErrors : [];

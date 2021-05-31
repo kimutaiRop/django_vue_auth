@@ -93,13 +93,6 @@ export default new Vuex.Store({
             lastName
             email
             isActive
-            userprofile{
-              id
-              idNumber
-              balance
-              lockedAmount
-              image
-            }
           }
         }
       }
@@ -111,10 +104,7 @@ export default new Vuex.Store({
           if (!data.tokenAuth.errors) {
             state.login_success = data.tokenAuth.success
             let user = data.tokenAuth.user
-            let profile = user['userprofile']
-            delete user['userprofile']
             state.user = user
-            state.profile = profile
             let dt = {
               "token": data.tokenAuth.token,
               "refresh_token": data.tokenAuth.refreshToken,
