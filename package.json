@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
@@ -16,6 +16,7 @@
     "core-js": "^3.6.5",
     "graphql": "^15.5.0",
     "graphql-tag": "^2.12.4",
+    "underscore": "^1.13.1",
     "vue": "^2.6.11",
     "vue-apollo": "^3.0.7",
     "vue-router": "^3.2.0",

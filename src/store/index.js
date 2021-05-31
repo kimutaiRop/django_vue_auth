@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { client } from '../apollo_client'
 import gql from "graphql-tag";
-
+import router from '../router'
+import * as _ from 'underscore'
 Vue.use(Vuex)
 
 
@@ -30,7 +31,7 @@ export default new Vuex.Store({
         } else {
           clearInterval(state.intervalObj);
         }
-      }, 1500);
+      }, 1000);
     },
     logout(state) {
       clearInterval(state.intervalObj);
@@ -38,7 +39,12 @@ export default new Vuex.Store({
       localStorage.removeItem("expiry")
       sessionStorage.removeItem("refresh_token")
       state.rem_seconds = 0
-
+      let path = _.findWhere(router.options.routes, { name: router.history.current.name })
+      if (path.meta.requiresAuth) {
+        router.push({ name: 'Login' })
+      }
+      state.user = {}
+      state.profile = {}
     },
     checkAuth(state) {
       let token = localStorage.getItem("token")
@@ -64,8 +70,15 @@ export default new Vuex.Store({
       clearInterval(state.intervalObj);
       this.commit("LogoutTimer", dt)
       sessionStorage.setItem("refresh_token", data.refresh_token)
+      if (data.push) {
+        let next_url = data.next_url
+        router.push(next_url)
+      }
     },
     login(state, data_) {
+      state.login_errors = {}
+      let next_url = data_['next_url']
+      delete data_['next_url']
       const LOGIN_QUERY = gql`
       mutation($email: String!, $password: String!) {
         tokenAuth(password: $password, email: $email) {
@@ -80,6 +93,13 @@ export default new Vuex.Store({
             lastName
             email
             isActive
+            userprofile{
+              id
+              idNumber
+              balance
+              lockedAmount
+              image
+            }
           }
         }
       }
@@ -90,10 +110,16 @@ export default new Vuex.Store({
         update: (cache, { data }) => {
           if (!data.tokenAuth.errors) {
             state.login_success = data.tokenAuth.success
-            state.user = data.tokenAuth.user
+            let user = data.tokenAuth.user
+            let profile = user['userprofile']
+            delete user['userprofile']
+            state.user = user
+            state.profile = profile
             let dt = {
               "token": data.tokenAuth.token,
-              "refresh_token": data.tokenAuth.refreshToken
+              "refresh_token": data.tokenAuth.refreshToken,
+              "push": true,
+              "next_url": next_url
             }
             this.commit("completeLogin", dt)
           } else {
@@ -103,6 +129,7 @@ export default new Vuex.Store({
       });
     },
     register(state, data_) {
+      state.register_errors = {}
       let REGISTER_QUERY = gql`
         mutation(
           $username: String!
@@ -133,7 +160,7 @@ export default new Vuex.Store({
         },
       });
     },
-    refreshToken() {
+    refreshSessionToken() {
       let token = sessionStorage.getItem("refresh_token")
       let REFRESH_QUERY = gql`
       mutation ($token: String!) {
@@ -151,13 +178,14 @@ export default new Vuex.Store({
           if (token) {
             let dt = {
               "token": data.refreshToken.token,
-              "refresh_token": data.refreshToken.refreshToken
+              "refresh_token": data.refreshToken.refreshToken,
+              "push": false
             }
             this.commit("completeLogin", dt)
           }
         }
       })
-    }
+    },
 
   },
   actions: {

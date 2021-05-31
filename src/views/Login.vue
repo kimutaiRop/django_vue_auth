@@ -15,6 +15,9 @@ export default {
 
   methods: {
     loginHandler(data) {
+      data["next_url"] = this.$route.params.nextUrl
+        ? this.$route.params.nextUrl
+        : "/";
       this.$store.commit("login", data);
     },
   },

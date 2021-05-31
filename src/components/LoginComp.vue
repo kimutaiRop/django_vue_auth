@@ -1,30 +1,85 @@
 <template>
-  <div class="row">
-    <div class="offset-md-4 col-md-4 login-form-1">
-      <form @submit="handleLogin">
-        <small class="text-danger" v-for="err of login_errors" :key="err.code">
-          {{ err.message }} ⬇
-        </small>
-        <div class="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Username"
-            name="email"
-          />
+  <div class="row align-items-center justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-5">
+      <div class="card">
+        <div class="card-body p-4">
+          <div class="text-center mt-2">
+            <h5 class="text-primary">Welcome Back !</h5>
+            <p class="text-muted">Sign in to continue</p>
+            <small
+              class="text-danger"
+              v-for="err of login_errors"
+              :key="err.code"
+            >
+              {{ err.message }}
+            </small>
+          </div>
+          <div class="p-2 mt-4">
+            <form @submit="handleLogin">
+              <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="username"
+                  placeholder="Enter username"
+                  name="email"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label" for="userpassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="userpassword"
+                  placeholder="Enter password"
+                />
+              </div>
+
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="auth-remember-check"
+                />
+                <label class="form-check-label" for="auth-remember-check"
+                  >Remember me</label
+                >
+              </div>
+
+              <div class="mt-3 text-end">
+                <button
+                  class="btn btn-primary w-sm waves-effect waves-light"
+                  type="submit"
+                >
+                  Log In
+                </button>
+              </div>
+              <SocialAuth />
+              <div class="mt-4 text-center">
+                <p class="mb-0">
+                  Don't have an account ?
+                  <router-link
+                    :to="{ name: 'Register' }"
+                    class="fw-medium text-primary"
+                  >
+                    Signup now
+                  </router-link>
+                  or
+                  <router-link
+                    :to="{ name: 'ForgotPassword' }"
+                    class="fw-medium text-primary"
+                  >
+                    forgot password</router-link
+                  >
+                </p>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Password</label>
-          <input
-            name="password"
-            type="password"
-            class="form-control"
-            placeholder="your password"
-          />
-        </div>
-        <button class="btn btn-success">login now</button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -32,9 +87,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-
+import SocialAuth from "./SocialAuth";
 export default {
   name: "LoginComp",
+  components: {
+    SocialAuth,
+  },
   computed: {
     ...mapGetters(["login_errors", "login_success"]),
   },
@@ -50,57 +108,3 @@ export default {
   },
 };
 </script>
-<style>
-.login-container {
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-label {
-  text-align: left !important;
-}
-.login-logo {
-  position: relative;
-  margin-left: -41.5%;
-}
-.login-logo img {
-  position: absolute;
-  width: 20%;
-  margin-top: 19%;
-  background: #282726;
-  border-radius: 4.5rem;
-  padding: 5%;
-}
-.login-form-1 {
-  padding-top: 4%;
-  padding-bottom: 9%;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form-2 {
-  padding: 9%;
-  background: #f05837;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login-form-2 h3 {
-  text-align: center;
-  margin-bottom: 12%;
-  color: #fff;
-}
-.btnSubmit {
-  font-weight: 600;
-  width: 50%;
-  color: #282726;
-  background-color: #fff;
-  border: none;
-  border-radius: 1.5rem;
-  padding: 2%;
-}
-.btnForgetPwd {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-.btnForgetPwd:hover {
-  text-decoration: none;
-  color: #fff;
-}
-</style>
